@@ -1,16 +1,32 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {currentVideo: exampleVideoData[0]};
+    this.state = {
+      currentVideo: exampleVideoData[0],
+      collection: exampleVideoData
+    };
   }
   
   selected(item) { 
-    console.log(item, this);
     this.setState({
       currentVideo: item
     });
   }
   
+  // componentDidMount () {
+  //   searchYouTube();
+  //   this.setState({
+  //     collection: videos,
+  //     currentVideo: videos[0]
+  //   });
+  // } 
+  
+  searched(videos) { 
+    this.setState({
+      collection: videos,
+      currentVideo: videos[0]
+    });
+  }
   
   
   render() {
@@ -18,7 +34,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><Search /></div>
+            <div><Search newSearch={this.searched.bind(this)}/></div>
           </div>
         </nav>
         <div className="row">
@@ -26,7 +42,7 @@ class App extends React.Component {
             <div><VideoPlayer video={this.state.currentVideo}/></div>
           </div>
           <div className="col-md-5">
-            <div><VideoList videos={exampleVideoData} onClick={this.selected.bind(this)}/></div>
+            <div><VideoList videos={this.state.collection} onSelect={this.selected.bind(this)}/></div>
           </div>
         </div>
       </div> 

@@ -1,7 +1,7 @@
 var VideoListEntry = (props) => {
   
   var onTitleClick = () => {
-    props.onClick(props.video);
+    props.onSelect(props.video);
   };
   
   return (
