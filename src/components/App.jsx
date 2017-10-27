@@ -13,28 +13,33 @@ class App extends React.Component {
     });
   }
   
-  // componentDidMount () {
-  //   searchYouTube();
-  //   this.setState({
-  //     collection: videos,
-  //     currentVideo: videos[0]
-  //   });
-  // } 
+  componentDidMount () {
+    searchYouTube({query: 'soccer'}, this.setNewVideoData.bind(this) );
+  } 
   
-  searched(videos) { 
+  onSearchButtonClick () {
+    var searchTerm = $('#searchBar').val();
+    if (searchTerm !== '') {
+      searchYouTube({query: searchTerm}, this.setNewVideoData.bind(this));
+    } else {
+      // do nothing
+    }
+  } 
+  
+  setNewVideoData(data) {
     this.setState({
-      collection: videos,
-      currentVideo: videos[0]
+      collection: data.items,
+      currentVideo: data.items[0]
     });
   }
-  
   
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><Search newSearch={this.searched.bind(this)}/></div>
+            
+            <div><Search onSearch={this.onSearchButtonClick.bind(this)}/></div>
           </div>
         </nav>
         <div className="row">
@@ -54,5 +59,7 @@ class App extends React.Component {
 // `var` declarations will only exist globally where explicitly defined
 window.App = App;
 
+
+//<div><Search newSearch={this.searched.bind(this)}/></div>
 
  // +  
