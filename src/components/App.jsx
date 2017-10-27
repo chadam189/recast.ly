@@ -7,8 +7,6 @@ class App extends React.Component {
     };
   }
   
-
-  
   
   selected(item) { 
     this.setState({
@@ -17,7 +15,7 @@ class App extends React.Component {
   }
   
   componentDidMount () {
-    this.props.searchYouTube({query: 'soccer'}, this.setNewVideoData.bind(this) );
+    this.props.searchYouTube({query: 'rick and morty'}, this.setNewVideoData.bind(this) );
   } 
   
   onSearchButtonClick () {
@@ -26,11 +24,6 @@ class App extends React.Component {
       this.props.searchYouTube({query: searchTerm}, this.setNewVideoData.bind(this));
     } 
   } 
-  
-  //call onSearchButtonClick every few seconds
-  
-  
-  
   
   
   setNewVideoData(data) {
