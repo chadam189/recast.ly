@@ -3,9 +3,12 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentVideo: exampleVideoData[0],
-      collection: exampleVideoData
+      collection: exampleVideoData,
     };
   }
+  
+
+  
   
   selected(item) { 
     this.setState({
@@ -14,17 +17,21 @@ class App extends React.Component {
   }
   
   componentDidMount () {
-    searchYouTube({query: 'soccer'}, this.setNewVideoData.bind(this) );
+    this.props.searchYouTube({query: 'soccer'}, this.setNewVideoData.bind(this) );
   } 
   
   onSearchButtonClick () {
     var searchTerm = $('#searchBar').val();
     if (searchTerm !== '') {
-      searchYouTube({query: searchTerm}, this.setNewVideoData.bind(this));
-    } else {
-      // do nothing
-    }
+      this.props.searchYouTube({query: searchTerm}, this.setNewVideoData.bind(this));
+    } 
   } 
+  
+  //call onSearchButtonClick every few seconds
+  
+  
+  
+  
   
   setNewVideoData(data) {
     this.setState({
